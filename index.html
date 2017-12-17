@@ -1,1 +1,26 @@
-Hola mundo
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>El juego de la vida</title>
+	<script src="https://use.fontawesome.com/26fcddf7f4.js"></script>
+	<link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<body>
+			<b>Tamaño:</b><input type="number" id="largo" value="50" min="1" >
+			<button onclick="" class="fa fa-table" value="50"> Cambiar tamaño</button>
+			<button onclick="" title="Llenar"><b class="fa fa-refresh fa-spin"></b> Llenar</button>
+			<button class="fa fa-arrow-right" onclick="" title="Siguiente"> Siguiente</button>
+			<button class="fa fa-play" onclick="" title="Iniciar"> Avanzar Automático</button>
+			<button class="fa fa-stop" onclick="" title="Detener"> Detener</button>
+			<button class="fa fa-trash" onclick="" title="Vaciar"> Vaciar</button>
+			Velocidad: <input type="range" onchange="" min="1" max="1000" step="1" id="speed">
+			<p id="contadorVelocidad">1000ms</p>
+			<table id="tabla">
+				<tbody id='tablacont'></tbody>
+			</table>
+			<div class="viva"></div> <b>Viva</b><div class="muerta"></div> <b>Muerta</b>	
+			<script type="text/javascript" src="js/js.js"></script>
+
+</body>
+</html>
