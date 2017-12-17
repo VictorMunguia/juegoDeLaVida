@@ -24,3 +24,12 @@ function dibujarTablero(){
 			document.getElementById(i).innerHTML+="<td class='muerta' id="+i+","+j+"></td> ";
 	}
 }
+
+//Llena la tabla de manera aleatoria
+function llenar(){	
+	for(let i=0;i<largo;i++)
+		for(let j=0;j<largo;j++)
+		{
+			document.getElementById(i+","+j).className = Math.random() > 0.7 ? 'viva' : 'muerta';
+		}
+}
