@@ -33,3 +33,15 @@ function llenar(){
 			document.getElementById(i+","+j).className = Math.random() > 0.7 ? 'viva' : 'muerta';
 		}
 }
+
+//Cambia el tamaño de la tabla dependiendo del valor que esté en el input con el id="largo"
+function cambiarTamano(){
+	largo=document.getElementById("largo").value;
+	if(largo>0)
+	{
+		inicioMatriz();
+		dibujarTablero();
+	}
+	else
+		alert("Dimensiones fuera de los límites");
+}
