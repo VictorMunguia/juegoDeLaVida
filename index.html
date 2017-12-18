@@ -10,11 +10,11 @@
 			<b>Tamaño:</b><input type="number" id="largo" value="50" min="1" >
 			<button onclick="cambiarTamano()" class="fa fa-table" value="50"> Cambiar tamaño</button>
 			<button onclick="llenar()" title="Llenar"><b class="fa fa-refresh fa-spin"></b> Llenar</button>
-			<button class="fa fa-arrow-right" onclick="" title="Siguiente"> Siguiente</button>
-			<button class="fa fa-play" onclick="" title="Iniciar"> Avanzar Automático</button>
-			<button class="fa fa-stop" onclick="" title="Detener"> Detener</button>
-			<button class="fa fa-trash" onclick="" title="Vaciar"> Vaciar</button>
-			Velocidad: <input type="range" onchange="" min="1" max="1000" step="1" id="speed">
+			<button class="fa fa-arrow-right" onclick="siguiente()" title="Siguiente"> Siguiente</button>
+			<button class="fa fa-play" onclick="iniciar()" title="Iniciar"> Avanzar Automático</button>
+			<button class="fa fa-stop" onclick="detener()" title="Detener"> Detener</button>
+			<button class="fa fa-trash" onclick="vaciar()" title="Vaciar"> Vaciar</button>
+			Velocidad: <input type="range" onchange="cambiarVelocidad(this.value)" min="1" max="1000" step="1" id="speed">
 			<p id="contadorVelocidad">1000ms</p>
 			<table id="tabla">
 				<tbody id='tablacont'></tbody>

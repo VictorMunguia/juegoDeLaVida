@@ -98,3 +98,47 @@ function cambiarEstados(){
 		for(let j=0;j<largo;j++)
 			document.getElementById(i+","+j).className=estado[i][j];	
 }
+
+//Evalua el estado y luego lo cambia
+function siguiente(){
+	inicioMatriz();
+	for(let i=0;i<largo;i++)
+		for(let j=0;j<largo;j++)
+		{
+			evaluarEstado(i,j);					
+		}
+	cambiarEstados();
+}
+
+//Llena la tabla de manera aleatoria
+function llenar(){	
+	for(let i=0;i<largo;i++)
+		for(let j=0;j<largo;j++)
+		{
+			document.getElementById(i+","+j).className = Math.random() > 0.7 ? 'viva' : 'muerta';
+		}
+}
+
+//Deja todas las células de la tabla en estado "muerta" y deja la matriz en blanco
+function vaciar(){
+	let a;
+	for(let i=0;i<largo;i++)
+		for(let j=0;j<largo;j++)
+		{
+				document.getElementById(i+","+j).className="muerta";
+		}			
+	inicioMatriz();
+}
+
+//Detiene el timer
+function detener() {
+    clearTimeout(Timer);                      
+}
+
+//Cambia de velocidad dependiendo del valor que contiene el input de tipo range cada que ocurra el evento onchange
+function cambiarVelocidad(speed){
+    	clearTimeout(Timer);                      
+		velocidad=speed;
+		Timer = setInterval(siguiente, velocidad);
+		document.getElementById("contadorVelocidad").innerHTML=speed+"ms";
+}
