@@ -14,24 +14,11 @@ function inicioMatriz()
 		estado[a]=new Array(largo);
 }	
 
-
-//Dibuja un tablero dependiendo del valor de la variable largo y la dibuja en un <tbody> con id="tablacont"
-function dibujarTablero(){
-		document.getElementById("tablacont").innerHTML="";
-	for(let i=0;i<largo;i++){
-		document.getElementById("tablacont").innerHTML+="<tr id="+i+"></tr>";
-		for(let j=0;j<largo;j++)
-			document.getElementById(i).innerHTML+="<td class='muerta' id="+i+","+j+"></td> ";
-	}
-}
-
-//Llena la tabla de manera aleatoria
-function llenar(){	
+//Cambia los estados cada una de las células de la tabla con los valores que están contenidos en la matriz estado
+function cambiarEstados(){
 	for(let i=0;i<largo;i++)
 		for(let j=0;j<largo;j++)
-		{
-			document.getElementById(i+","+j).className = Math.random() > 0.7 ? 'viva' : 'muerta';
-		}
+			document.getElementById(i+","+j).className=estado[i][j];	
 }
 
 //Cambia el tamaño de la tabla dependiendo del valor que esté en el input con el id="largo"
@@ -44,6 +31,14 @@ function cambiarTamano(){
 	}
 	else
 		alert("Dimensiones fuera de los límites");
+}
+
+//Cambia de velocidad dependiendo del valor que contiene el input de tipo range cada que ocurra el evento onchange
+function cambiarVelocidad(speed){
+    	clearTimeout(Timer);                      
+		velocidad=speed;
+		Timer = setInterval(siguiente, velocidad);
+		document.getElementById("contadorVelocidad").innerHTML=speed+"ms";
 }
 
 //Compara el entorno de una célula con los parametros dados y retorna la suma de la cantidad de células vivas a su alrededor
@@ -77,6 +72,21 @@ function compararEntorno(i,j)
 	return vida;
 }
 
+//Detiene el timer
+function detener() {
+    clearTimeout(Timer);                      
+}
+
+//Dibuja un tablero dependiendo del valor de la variable largo y la dibuja en un <tbody> con id="tablacont"
+function dibujarTablero(){
+		document.getElementById("tablacont").innerHTML="";
+	for(let i=0;i<largo;i++){
+		document.getElementById("tablacont").innerHTML+="<tr id="+i+"></tr>";
+		for(let j=0;j<largo;j++)
+			document.getElementById(i).innerHTML+="<td class='muerta' id="+i+","+j+"></td> ";
+	}
+}
+
 //A partir del resultado que retorna la función compararEntorno se decide si la célula vive, renace, muere o permanece en el estado en el que se encontraba anteriormente
 function evaluarEstado(i,j){
 	let resultadoComparacion=compararEntorno(i,j);
@@ -93,10 +103,13 @@ function iniciar() {
     Timer = setInterval(siguiente, velocidad);            
 }
 
-function cambiarEstados(){
+//Llena la tabla de manera aleatoria
+function llenar(){	
 	for(let i=0;i<largo;i++)
 		for(let j=0;j<largo;j++)
-			document.getElementById(i+","+j).className=estado[i][j];	
+		{
+			document.getElementById(i+","+j).className = Math.random() > 0.7 ? 'viva' : 'muerta';
+		}
 }
 
 //Evalua el estado y luego lo cambia
@@ -110,15 +123,6 @@ function siguiente(){
 	cambiarEstados();
 }
 
-//Llena la tabla de manera aleatoria
-function llenar(){	
-	for(let i=0;i<largo;i++)
-		for(let j=0;j<largo;j++)
-		{
-			document.getElementById(i+","+j).className = Math.random() > 0.7 ? 'viva' : 'muerta';
-		}
-}
-
 //Deja todas las células de la tabla en estado "muerta" y deja la matriz en blanco
 function vaciar(){
 	let a;
@@ -128,17 +132,4 @@ function vaciar(){
 				document.getElementById(i+","+j).className="muerta";
 		}			
 	inicioMatriz();
-}
-
-//Detiene el timer
-function detener() {
-    clearTimeout(Timer);                      
-}
-
-//Cambia de velocidad dependiendo del valor que contiene el input de tipo range cada que ocurra el evento onchange
-function cambiarVelocidad(speed){
-    	clearTimeout(Timer);                      
-		velocidad=speed;
-		Timer = setInterval(siguiente, velocidad);
-		document.getElementById("contadorVelocidad").innerHTML=speed+"ms";
 }
