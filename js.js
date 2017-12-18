@@ -87,3 +87,14 @@ function evaluarEstado(i,j){
 	else
 		estado[i][j]="muerta";	
 }
+
+//Ejecuta el método siguiente de manera automática mediante un timer cada n tiempo dependiendo del valor de la variable velocidad
+function iniciar() {
+    Timer = setInterval(siguiente, velocidad);            
+}
+
+function cambiarEstados(){
+	for(let i=0;i<largo;i++)
+		for(let j=0;j<largo;j++)
+			document.getElementById(i+","+j).className=estado[i][j];	
+}
